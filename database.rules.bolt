@@ -1,0 +1,10 @@
+path / {
+  read() { isAuthenticated() }
+}
+
+path /tokens/{uid} {
+  write() { isCurrentUser(uid) }
+}
+
+isAuthenticated() { auth != null }
+isCurrentUser(uid) { auth != null && auth.uid == uid }

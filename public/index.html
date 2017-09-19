@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Receipt Scanner</title>
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.0.0/cropper.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body class="mdc-theme--dark">
+  <button class="mdc-button logout" onclick="logout()">Logout</button>
+  <article route="">
+    <h1 style="text-align:center;">Sign in</h1>
+    <div id="firebaseui-auth-container"></div>
+  </article>
+
+  <article route="scan">
+    <video class="video" autoplay></video>
+    <canvas class="canvas"></canvas>
+    <div class="snapshot-wrapper">
+      <img class="snapshot">
+    </div>
+
+    <div class="controls">
+      <button onclick="switchCamera()" class="mdc-fab material-icons mdc-elevation--z4 switch-camera" aria-label="Switch Camera"
+        data-mdc-auto-init="MDCRipple">
+        <span class="mdc-fab__icon">cached</span>
+      </button>
+      <button onclick="capture()" class="mdc-fab material-icons mdc-elevation--z4 capture" aria-label="Camera" data-mdc-auto-init="MDCRipple">
+        <span class="mdc-fab__icon">camera</span>
+      </button>
+
+      <div class="sliders">
+        <div>
+          <input type="range" id="brightness" onchange="updateBrightnessContrast()" min="0" max="100" step="1">
+        </div>
+
+        <div>
+          <input type="range" id="contrast" onchange="updateBrightnessContrast()" min="0" max="100" step="1">
+        </div>
+      </div>
+
+      <button onclick="crop()" class="mdc-fab material-icons mdc-elevation--z4 crop" aria-label="Camera" data-mdc-auto-init="MDCRipple">
+        <span class="mdc-fab__icon">crop</span>
+      </button>
+
+      <button onclick="scan()" class="mdc-fab material-icons mdc-elevation--z4 back" aria-label="Camera" data-mdc-auto-init="MDCRipple">
+        <span class="mdc-fab__icon">reply</span>
+      </button>
+
+      <button onclick="done()" class="mdc-fab material-icons mdc-elevation--z4 done" aria-label="Camera" data-mdc-auto-init="MDCRipple">
+        <span class="mdc-fab__icon">done</span>
+      </button>
+
+      <a href="/#/receipts">
+        <button class="mdc-fab material-icons mdc-elevation--z4" aria-label="Camera" data-mdc-auto-init="MDCRipple">
+          <span class="mdc-fab__icon">receipt</span>
+        </button>
+      </a>
+
+    </div>
+  </article>
+
+  <article route="receipts">
+
+    <div class="controls">
+
+      <a href="/#/scan">
+        <button class="mdc-fab material-icons mdc-elevation--z4" aria-label="Camera" data-mdc-auto-init="MDCRipple">
+          <span class="mdc-fab__icon">camera</span>
+        </button>
+      </a>
+
+      <button onclick="requestPermission()" class="mdc-fab material-icons mdc-elevation--z4 notifications" aria-label="Notifications" data-mdc-auto-init="MDCRipple">
+        <span class="mdc-fab__icon">notifications</span>
+      </button>
+
+    </div>
+  </article>
+
+  <div class="mdc-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+    <div class="mdc-snackbar__text"></div>
+    <div class="mdc-snackbar__action-wrapper">
+      <button type="button" class="mdc-button mdc-snackbar__action-button"></button>
+    </div>
+  </div>
+
+  <script src="/__/firebase/4.3.0/firebase-app.js"></script>
+  <script src="/__/firebase/4.3.0/firebase-auth.js"></script>
+  <script src="/__/firebase/4.3.0/firebase-database.js"></script>
+  <script src="/__/firebase/4.3.0/firebase-messaging.js"></script>
+  <script src="/__/firebase/4.3.0/firebase-storage.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
+  <script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.0.0/cropper.min.js"></script>
+  <script src="/js/adapter.js"></script>
+  <script src="/js/glfx.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/router.js"></script>
+  <script src="/js/messaging.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+{
+  "database": {
+    "rules": "database.rules.bolt"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [{
+      "source": "/firebase/*",
+      "destination": "https://www.firebase.com",
+      "type": 302
+    }, {
+      "source": "/blog/:post*",
+      "destination": "https://blog.myapp.com/:post*",
+      "type": 301
+    }, {
+      "source": "/users/:id/profile",
+      "destination": "/users/:id/newProfile",
+      "type": 301
+    }],
+    "rewrites": [{
+        "source": "db",
+        "destination": "/db.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }, {
+        "source": "/bigben",
+        "function": "bigben"
+      }
+    ],
+    "headers": [{
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+      "headers": [{
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      }]
+    }, {
+      "source": "**/*.@(jpg|jpeg|gif|png)",
+      "headers": [{
+        "key": "Cache-Control",
+        "value": "max-age=7200"
+      }]
+    }, {
+      "source": "404.html",
+      "headers": [{
+        "key": "Cache-Control",
+        "value": "max-age=300"
+      }]
+    }],
+    "cleanUrls": true,
+    "trailingSlash": false
+  },
+  "functions": {
+      "source": "functions"
+  }
+}
