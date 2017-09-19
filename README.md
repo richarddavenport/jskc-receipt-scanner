@@ -4,3 +4,5 @@ https://console.cloud.google.com/home/dashboard?project=javascriptkc-receipt-sca
 https://console.firebase.google.com/u/0/project/javascriptkc-receipt-scanner/overview
 
 https://jskc.rocks/db
+
+https://console.cloud.google.com/storage/browser?project=javascriptkc-receipt-scanner
