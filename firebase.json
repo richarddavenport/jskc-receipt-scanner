@@ -29,9 +29,10 @@
       {
         "source": "**",
         "destination": "/index.html"
-      }, {
-        "source": "/bigben",
-        "function": "bigben"
+      },
+      {
+        "source": "/helloWorld",
+        "function": "helloWorld"
       }
     ],
     "headers": [{
@@ -57,6 +58,6 @@
     "trailingSlash": false
   },
   "functions": {
-      "source": "functions"
+    "source": "functions"
   }
 }

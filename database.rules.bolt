@@ -1,5 +1,17 @@
 path / {
   read() { isAuthenticated() }
+  /user-posts {
+    write() { isAuthenticated() }
+  }
+  /posts {
+    write() { isAuthenticated() }
+  }
+  /post-comments {
+    write() { isAuthenticated() }
+  }
+  /users {
+    write() { isAuthenticated() }
+  }
 }
 
 path /tokens/{uid} {

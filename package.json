@@ -9,7 +9,8 @@
     "deploy": "firebase deploy",
     "deploy:functions": "npm run deploy -- --only functions",
     "deploy:hosting": "npm run deploy -- --only hosting",
-    "deploy:database": "npm run deploy -- --only database"
+    "deploy:database": "npm run deploy -- --only database",
+    "functions:preview": "firebase-bolt -- < database.rules.bolt"
   },
   "devDependencies": {
     "firebase-bolt": "^0.8.2",

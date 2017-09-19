@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "javascriptkc-receipt-scanner"
+    "default": "javascriptkc-receipt-scanner",
+    "dev": "jskc-receipt-scanner-dev"
   }
 }

@@ -47,6 +47,7 @@ const login = () => {
 };
 
 const receipts = () => {
+  stopStream();
   step('-receipts');
 
   firebase.database().ref('receipts').on('child_added', snap => {
@@ -134,6 +135,7 @@ const createReceiptImage = (thumbnail, original) => {
 }
 
 const logout = () => {
+  stopStream();
   firebase.auth().signOut();
 }
 
@@ -165,9 +167,7 @@ const capture = () => {
   cropper = new Cropper(snapshot, {
     crop: function (e) {}
   });
-  if (window.stream) {
-    window.stream.getTracks().forEach(track => track.stop());
-  }
+  stopStream();
 };
 
 const crop = () => {
@@ -184,8 +184,8 @@ const done = () => {
   const storageRef = firebase.storage().ref();
   const pushRef = firebase.database().ref().push();
   const user = firebase.auth().currentUser;
-  const faceImagesRef = storageRef.child(`receipts/${user.uid}/${pushRef.key}.${blob.type.split('/')[1]}`);
-  faceImagesRef.put(blob, metadata).then(snapshot => {
+  const receiptRef = storageRef.child(`receipts/${user.uid}/${pushRef.key}.${blob.type.split('/')[1]}`);
+  receiptRef.put(blob, metadata).then(snapshot => {
     console.log('Uploaded a blob or file!');
     console.log(snapshot);
     scan();
